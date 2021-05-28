@@ -1,0 +1,11 @@
+name;texture;diameter;orbit;rivoluzione
+Sun;textures/2k_sun.jpg;109,13;0;0
+Mercury;textures/2k_mercury.jpg;0,38;4,54;87,9522
+Venus;textures/2k_venus_surface.jpg;0,95;8,48;224,7018
+Earth;textures/2k_earth_daymap.jpg;1,00;11,73;365,25
+Mars;textures/2k_mars.jpg;0,53;17,87;686,9622
+Jupiter;textures/2k_jupiter.jpg;11,21;61,02;4331,865
+Saturn;textures/2k_saturn.jpg;9,45;112,06;10745,655
+Uranus;textures/2k_uranus.jpg;4,01;225,39;30589,6875
+Neptune;textures/2k_neptune.jpg;3,88;353,13;59802,3825
+Pluto;textures/2k_venus_atmosphere.jpg;0,18;463,77;90592,9575
