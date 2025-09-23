@@ -33,7 +33,11 @@
 }
 
 * { box-sizing: border-box; }
-body { height: 100%; }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 html {
@@ -45,12 +49,11 @@ html {
 
 /* Page content background becomes transparent overlay */
 body {
-  margin: 0;
-  padding: 1rem;
   background: transparent;
   color: var(--text);
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
+  padding: 1rem;
   min-height: 100vh;
   position: relative;
 }
@@ -135,7 +138,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.8rem 1rem;
   border-radius: 8px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -148,40 +151,45 @@ body {
 }
 
 @media (max-width: 900px) {
-  .sidebar-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 160px 2rem 1rem; /* Adjusted padding for smaller screens */
   }
-  .sidebar-close {
-    display: flex;
+  .sidebar {
+    border-right: none;
+    position: fixed;
+    top: 0 !important; /* Force sidebar to the very top */
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Ensure full viewport height */
+    z-index: 9999 !important; /* Ensure sidebar is on top of everything */
+    box-shadow: none;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+    margin: 0 !important; /* Remove all margins */
+    padding: 0 !important; /* Remove all paddings */
   }
-}
-
-@media (min-width: 901px) {
-  .sidebar-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .layout.sidebar-open .sidebar {
+    visibility: visible;
+    transform: translateX(0);
   }
-  .layout.sidebar-closed .sidebar-toggle {
-    display: flex;
+  .sidebar-inner {
+    max-height: 100vh; /* Ensure full viewport height for inner content */
+    position: sticky; /* Keep sticky for inner scrolling if content overflows */
+    top: 0; /* Align inner content to the top */
   }
-}
-
-.header-actions .btn-primary,
-.header-actions .btn-secondary {
-  display: inline-flex; /* Use flex for icon alignment */
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.4rem; /* More padding for larger button size */
-  border-radius: 10px; /* Slightly more rounded buttons */
-  font-weight: 500; /* Adjusted font weight */
-  text-decoration: none;
-  transition: all .2s ease; /* Smooth transitions for all properties */
+  .sidebar-backdrop {
+    display: none !important;
+  }
+  .layout.sidebar-open .sidebar-backdrop {
+    display: none !important;
+  }
 }
 
 .header-actions .btn-primary {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
   background: var(--primary);
   color: var(--bg); /* Darker text on primary button */
   box-shadow: 0 4px 12px rgba(255,0,128,0.2); /* More prominent shadow with magenta color */
@@ -198,6 +206,8 @@ body {
 }
 
 .header-actions .btn-secondary {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
   background: var(--surface); /* Use surface for secondary button background */
   border: 1px solid var(--border);
   color: var(--text);
@@ -225,8 +235,8 @@ body {
 .search input[type="search"] {
   width: 320px; /* Wider search input */
   max-width: 50vw;
-  padding: 0.8rem 1.2rem; /* Increased padding for larger size */
-  border-radius: 10px; /* More rounded corners */
+  padding: 0.8rem 1rem; /* Consistent padding */
+  border-radius: 8px; /* Consistent rounded corners */
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
@@ -294,7 +304,7 @@ body {
     "sidebar content"
     "sidebar footer";
   gap: 1.5rem;
-  padding: 2rem 2rem;
+  padding: 2rem; /* Consistent padding on all sides for desktop */
   min-height: calc(100vh - 200px); /* Ensure proper height */
   background: var(--card);
   border: 1px solid var(--border);
@@ -316,43 +326,80 @@ body {
   display: none;
 }
 
+/* Desktop styles - Sidebar always visible, no toggle controls */
+@media (min-width: 901px) {
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  .sidebar-close {
+    display: none !important;
+  }
+
+  .layout.sidebar-closed .sidebar {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
+  .site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: transparent !important;
+    z-index: 9997 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Completely remove from grid layout */
+    display: block !important;
+    grid-area: unset !important;
+  }
+  body {
+    padding: 1rem;
+  }
   .layout {
     grid-template-columns: 1fr;
-    padding: 2rem 2rem; /* Adjusted padding for smaller screens */
+    padding: 0 1rem 1rem; /* No top padding since header is fixed */
   }
   .sidebar {
     border-right: none;
     position: fixed;
-    top: 4rem;
+    top: 0 !important; /* Force sidebar to the very top */
     left: 0;
-    width: 280px;
-    height: calc(100vh - 4rem);
-    z-index: 1050;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    width: 80vw; /* Adjusted width for mobile sidebar */
+    max-width: 300px; /* Max width for sidebar on mobile */
+    height: 100vh; /* Ensure full viewport height */
+    z-index: 9999 !important; /* Ensure sidebar is on top of everything */
+    box-shadow: none;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin: 0 !important; /* Remove all margins */
+    padding: 0 !important; /* Remove all paddings */
   }
   .layout.sidebar-open .sidebar {
-    transform: translateX(0);
+    visibility: visible;
+    transform: translateX(-100);
   }
   .sidebar-inner {
     max-height: none; /* Remove max-height on mobile */
     position: static; /* Remove sticky on mobile */
   }
-  .sidebar-backdrop {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: 999;
-  }
+
   .layout.sidebar-open .sidebar-backdrop {
     display: block;
   }
 }
+
+html.sidebar-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Content overlay removed for mobile navbar */
 
 /* Sidebar */
 .sidebar {
@@ -370,7 +417,7 @@ body {
 
 .sidebar-inner {
   position: sticky;
-  top: 1rem; /* Adjusted sticky top position */
+  top: 0; /* Adjusted sticky top position to 0 */
   max-height: calc(100vh - 2rem); /* Adjusted max-height */
   overflow: auto;
   padding: 0; /* Removed padding as it's on the parent */
@@ -543,21 +590,9 @@ article h1 {
   margin-bottom: 1rem;
 }
 
-.markdown-body pre {
-  background: #07101a;
-  padding: 1.2rem; /* More padding */
-  border-radius: 10px; /* More rounded corners */
-  overflow: auto;
-  margin-bottom: 1.5rem;
-}
 
-.markdown-body code {
-  background: #d1d8e0;
-  padding: 0.25rem 0.4rem; /* Adjusted padding */
-  border-radius: 5px;
-  font-family: 'Fira Code', monospace; /* Example of a modern monospace font */
-  font-size: 0.95em;
-}
+
+
 
 .markdown-body a {
   color: var(--primary);
@@ -623,7 +658,7 @@ article h1 {
 
   .layout {
     grid-template-columns: 1fr;
-    padding: 1rem 2rem;
+    padding: 160px 2rem 1rem;
     justify-content: flex-start; /* Remove centering on mobile */
   }
   .content {
@@ -631,7 +666,7 @@ article h1 {
   }
 
   .content {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
   }
 
   article h1 {
@@ -673,34 +708,7 @@ article h1 {
   }
 }
 
-.ubuntu-mono-regular {
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-}
 
-.ubuntu-mono-bold {
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.ubuntu-mono-regular-italic {
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.ubuntu-mono-bold-italic {
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 700;
-  font-style: italic;
-}
-.syne-mono-regular {
-  font-family: "Syne Mono", monospace;
-  font-weight: 400;
-  font-style: normal;
-}
 
 .markdown-body pre {
   background: var(--code-bg);

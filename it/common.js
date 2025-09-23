@@ -61,21 +61,21 @@
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', (e) => {
       e.preventDefault();
-      if (window.innerWidth > 900) {
-        layout.classList.toggle('sidebar-closed');
-      } else {
+      // Only allow toggle on mobile (≤900px)
+      if (window.innerWidth <= 900) {
         layout.classList.toggle('sidebar-open');
       }
+      // Desktop (>900px): No action - sidebar always visible
     });
   }
 
   if (sidebarClose) {
     sidebarClose.addEventListener('click', () => {
-      if (window.innerWidth > 900) {
-        layout.classList.toggle('sidebar-closed');
-      } else {
+      // Only allow close on mobile (≤900px)
+      if (window.innerWidth <= 900) {
         layout.classList.remove('sidebar-open');
       }
+      // Desktop (>900px): No action - sidebar always visible
     });
   }
 
