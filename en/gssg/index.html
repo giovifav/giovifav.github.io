@@ -52,7 +52,7 @@
       <div></div>
       <button class="sidebar-close"><i class="fas fa-times"></i></button>
     </div>
-    <ul><li><a href="../../index.html">Home</a></li><li class="dir has-children has-folder expanded"><details open><summary><span>Gio's static site generator</span></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../jigsaw/index.html" data-target="jigsaw/index.html">Piece by piece puzzle</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../luapydoc/index.html" data-target="luapydoc/index.html">LuaPyDoc</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../Nal/index.html" data-target="Nal/index.html">Navigate and loot</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../play64/index.html" data-target="play64/index.html">Play64 fantasy console</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../VectorDefense/index.html" data-target="VectorDefense/index.html">VectorDefense</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../voxel64/index.html" data-target="voxel64/index.html">Voxel64</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../whisperli_info/index.html" data-target="whisperli_info/index.html">Whisperli</a></summary></details></li></ul>
+    <ul><li><a href="../../index.html">Home</a></li><li class="dir has-children has-folder expanded"><details open><summary><span>Gio's static site generator</span></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../jigsaw/index.html" data-target="jigsaw/index.html">Piece by piece puzzle</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../luapydoc/index.html" data-target="luapydoc/index.html">LuaPyDoc</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../Nal/index.html" data-target="Nal/index.html">Navigate and loot</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../play64/index.html" data-target="play64/index.html">Play64 fantasy console</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../VectorDefense/index.html" data-target="VectorDefense/index.html">Whisperli</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../voxel64/index.html" data-target="voxel64/index.html">Voxel64</a></summary></details></li><li class="dir has-children has-folder"><details><summary><a href="../whisperli_info/index.html" data-target="whisperli_info/index.html">Whisperli</a></summary></details></li></ul>
   </div>
 </aside>
 
@@ -86,61 +86,20 @@
 
     <div class="markdown-body">
       <h1 id="gios-static-site-generator">Gio's Static Site Generator</h1>
-<p>A modern and intuitive static site generator written in Python with a Textual-based terminal interface.</p>
-<h2 id="description">Description</h2>
-<p>This tool allows you to create static websites starting from Markdown files. It offers a simple graphical interface to manage content, apply themes, and generate sites ready for publication. Supports image galleries, blog systems, automatic navigation, and much more.</p>
-<p><a href="https://github.com/giovifav/ssg">Download</a></p>
-<h2 id="main-features">Main Features</h2>
+<p>A modern and intuitive <strong>static site generator</strong>, developed in <strong>Python</strong>. It stands out for its textual interface (TUI) based on Textual, which makes managing the site simple and direct, without the need for complex commands.</p>
+<hr />
+<h3 id="features">Features</h3>
 <ul>
-<li><strong>Markdown Processing</strong>: Converts Markdown files into HTML pages using frontmatter for metadata.</li>
-<li><strong>Customizable Themes</strong>: Flexible templates with Jinja2 to customize the site's appearance.</li>
-<li><strong>Automatic Galleries</strong>: Creates image galleries with thumbnails and integrated viewer.</li>
-<li><strong>Blog Systems</strong>: Organizes content into articles with chronological sorting.</li>
-<li><strong>User Interface</strong>: Modern TUI to manage sites without complex commands.</li>
-<li><strong>Automatic Navigation</strong>: Sidebar and breadcrumbs generated automatically.</li>
-<li><strong>Multilingual</strong>: Support for Italian and English.</li>
+<li><strong>Markdown Processing:</strong> Converts Markdown files into HTML pages, using metadata defined in the frontmatter.</li>
+<li><strong>Customizable Themes:</strong> Offers flexible templates with <strong>Jinja2</strong> to personalize the site's look.</li>
+<li><strong>Automatic Galleries:</strong> Generates photo galleries complete with thumbnails and an integrated viewer.</li>
+<li><strong>Blog Management:</strong> Allows you to organize content into articles, ordering them chronologically.</li>
+<li><strong>Automatic Navigation:</strong> Automatically creates sidebars and breadcrumbs for intuitive navigation.</li>
+<li><strong>Multilingual:</strong> Supports Italian and English.</li>
 </ul>
-<h2 id="system-requirements">System Requirements</h2>
-<ul>
-<li>Python 3.8 or higher</li>
-<li>Dependencies listed in <code>requirements.txt</code></li>
-</ul>
-<h2 id="installation">Installation</h2>
-<pre><code class="language-bash">git clone https://github.com/giovifav/ssg.git
-cd ssg
-
-# Create virtual environment
-python -m venv .venv
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # macOS/Linux
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Launch the application
-python main.py
-</code></pre>
-<h2 id="usage">Usage</h2>
-<p>Launch the application with <code>python main.py</code>.</p>
-<h3 id="basic-steps">Basic Steps</h3>
-<ol>
-<li><strong>Initialize a new site</strong>: Choose a folder and configure name and author.</li>
-<li><strong>Add content</strong>: Create <code>.md</code> files in the <code>content/</code> folder with frontmatter for title, date, author.</li>
-<li><strong>Add images and assets</strong>: Place static files in the <code>assets/</code> folder.</li>
-<li><strong>Generate the site</strong>: The application automatically creates HTML output in the configured directory.</li>
-</ol>
-<h3 id="basic-structure-of-a-site">Basic Structure of a Site</h3>
-<pre><code>my-site/
-├── content/
-│   └── index.md
-├── assets/
-│   ├── theme.html
-│   └── theme.css
-└── config.toml
-</code></pre>
-<h2 id="license">License</h2>
-<p>This project is open source under MIT license.</p>
-<p>For support or issues, visit the <a href="https://github.com/giovifav/ssg">GitHub repository</a>.</p>
+<hr />
+<p><a href="https://github.com/giovifav/ssg"><strong>Download the project from GitHub</strong></a></p>
+<p>This project is <strong>open source</strong> and released under the MIT license.</p>
 
 <!-- Gallery component template (no title, no description) -->
 <section class="gallery" id="gallery-subtree-0">
